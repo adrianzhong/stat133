@@ -1,0 +1,5 @@
+name="Zirui Zhong"
+SID="538858"
+email="zhongzirui@berkeley.edu"
+github_name="adrianzhong"
+status="enrolled"
