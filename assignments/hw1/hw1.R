@@ -40,12 +40,13 @@
 # Create the variable
 # << y >> : a vector of length 100 which has the even numbers from 2 to 200.
 # For clarity put your code here, directly below the 
-
+x=seq(2,200,by=2)
 
 # Create the variable
 # << z >> : a vector of length 20 with character entries, "hw1", "hw2", ..., "hw20"
+z=paste("hw",1:20,sep="")
 
-# Create the variable
+zz# Create the variable
 # << m >> : a vector of length 100 with entries from a standard normal distribution
 set.seed(42)
 
