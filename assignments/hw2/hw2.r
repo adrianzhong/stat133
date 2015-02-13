@@ -60,16 +60,19 @@
 # Q1a. How many world records does this data frame contain?
 
 # n.wr <- your code here
+n.wr=nrow(wr1500m)
+
 
 # Q1b. Use R commands to find out who currently holds the world
 # record in the men's 1500 meter.
  
 # wr.name <- your code here
-
-
+#wr.name=wr1500m$athlete[wr1500m$times %in% 26]
+wr.name=wr1500m[min(wr1500m$times),"athlete"]
 # Let's look at the relationship between date and time.
 # Q1c. What type of variable (numeric (continuous or discrete), nominal ordinal)
 # are year and times? (no need to save the output, just look at it)
+plot(wr1500m$year,wr1500m$times, "l")
 
 
 # When we are examining a variable to see how it changes in time,
@@ -83,9 +86,12 @@
 # store that in a new variable and add to the data frame.
 
 # times_sec <- your code here
-# wr1500m <- your code here
-# plot( your code here )
+times_sec=wr1500m$times+180
 
+# wr1500m <- your code here
+wr1500m$times_sec=times_sec
+# plot( your code here )
+plot(wr1500m$year,wr1500m$times_sec, "s", xlab="year", ylab="record times")
 
 
 # Q2b. Redo the plot using a date that incorporates the month as 
@@ -98,9 +104,14 @@
 
 # your code here
 # new_year <- your code here
+new_year=wr1500m$year
+new_year[is.na(wr1500m$month)]=new_year[is.na(wr1500m$month)]+0.5
+new_year[is.na(wr1500m$month)==FALSE]=new_year[is.na(wr1500m$month)==FALSE]+wr1500m$month[is.na(wr1500m$month)==FALSE]/12
 # wr1500m <- your code here
-# plot( your code here )
+wr1500m$new_year=new_year
 
+# plot( your code here )
+plot(wr1500m$new_year,wr1500m$times_sec, "s", xlab="year", ylab="recordtimes")
 
 # Q3. The current world record was set in 1998. If we want to
 # show that this record still stands in 2014, we could add a 
@@ -111,9 +122,13 @@
 # then use the lines() function to add the additional segment.
 
 # wr_1998 <- your code here
+wr_1998=min(wr1500m$times_sec)
 # plot( your code here )
+plot(wr1500m$year,wr1500m$times_sec,xlim=c(1890,2020), "s", xlab="year", ylab="record times")
 # lines( your code here )
-
+x=c(1998:2014)
+y=rep(wr_1998,length(c(1998:2014)))
+lines(x,y,type="l")
 
 # Q4. There are two times where the record stood for several
 # years - in 1944 and 1998. Let's make it easier to see these
@@ -128,18 +143,29 @@
 # of wr1500m$athlete to access it.
 
 # wr_1944 <- your code here
+wr_1944=wr1500m$times_sec[wr1500m$year %in% 1944]
 # abline( your code here )
+abline(v = 1944, col = "grey")
 # abline( your code here )
+abline(v = 1998, col = "grey")
 # text( your code here )
+text(1944,wr_1944+5,labels= wr1500m$athlete[wr1500m$year %in% 1944],pos=4,cex=0.7)
 # text( your code here )
-
+text(1998,wr_1998+5,labels = wr1500m$athlete[wr1500m$year %in% 1998],pos=4,cex=0.7)
 
 # Q5. Now we are ready to add other contextual information.
 # Remake the plot as before but now adding axis labels and a title.
 # This is the FINAL version of the plot of world record times.
 
 # put your final version of the plotting commands below.
-
+plot(wr1500m$year,wr1500m$times_sec,xlim=c(1890,2020), "s", xlab="year", ylab="record times",main="Men 1500m world record")
+x=c(1998:2014)
+y=rep(wr_1998,length(c(1998:2014)))
+lines(x,y,type="l")
+abline(v = 1944, col = "grey")
+abline(v = 1998, col = "grey")
+text(1944,wr_1944+5,labels= wr1500m$athlete[wr1500m$year %in% 1944],pos=4,cex=0.7)
+text(1998,wr_1998+5,labels = wr1500m$athlete[wr1500m$year %in% 1998],pos=4,cex=0.7)
 ## You have finised the first plot!!
 
 ################################
@@ -155,7 +181,7 @@
 # It can be loaded into R with
 
 # load( your code here )
-
+load("C:/Users/Zirui/src/stat133/assignments/hw2/SummerOlympics2012Ctry.Rda")
 
 #Q6 Take a look at the variables in this data frame.
 # What kind of variable is GDP and population?
@@ -177,7 +203,7 @@
 # plot violates and why.
 
 # plot( your code here )
-
+plot(SO2012Ctry$GDP,SO2012Ctry$pop,"p")
 
 ### Data stand out, Values are plotted on the top of each other  
 ### Facilitate comparison OR poor scale, We should zoom in on the bulk of the data
@@ -191,9 +217,11 @@
 # total number of medals.
 
 # GDP_per_person <- your code here
+GDP_per_person=SO2012Ctry$GDP/SO2012Ctry$pop
 # SO2012Ctry <- your code here
+SO2012Ctry$GDP_per_person=GDP_per_person
 # symbols( your code here )
-
+symbols(log10(SO2012Ctry$pop),log10(SO2012Ctry$GDP_per_person),circles=SO2012Ctry$Total)
 
 # Q8. It appears that the countries with no medals are circles too.
 # Remake the plot, this time using *only the countries that won medals*. 
@@ -202,14 +230,22 @@
 # plotting character.
 
 # your plotting code here
+Country_with_medals=subset(SO2012Ctry, SO2012Ctry$Total>0)
+Country_with_no_medals=subset(SO2012Ctry,SO2012Ctry$Total==0)
+symbols(log10(Country_with_medals$pop),log10(Country_with_medals$GDP_per_person),circles=Country_with_medals$Total)
+points(log10(Country_with_no_medals$pop),log10(Country_with_no_medals$GDP_per_person),pch=".")
 
 # Q9. Make the plot information rich by adding axis labels, 
 # title, and label 5 of the more interesting points
 # with the country name. Use text() to do this.
 
 # top5 <- order( your code here )
+top5=order(SO2012Ctry$Total,decreasing=TRUE)[1:5]
 # your plotting code here, including a new call to text() 
-
+symbols(log10(Country_with_medals$pop),log10(Country_with_medals$GDP_per_person),circles=Country_with_medals$Total,xlab="population",ylab="GDP per person",main="2012 Omlypic Games Medels")
+points(log10(Country_with_no_medals$pop),log10(Country_with_no_medals$GDP_per_person),pch=".")
+top_name=SO2012Ctry$ISO[top5]
+text(log10(SO2012Ctry$pop[top5]),log10(SO2012Ctry$GDP_per_person[top5]),labels=top_name,cex=0.7)
 
 ######################################
 # PLOT 3.
@@ -224,6 +260,7 @@ install.packages("maps")
 library("maps")
 
 # world <- map( your code here )
+world=map(fill=TRUE,col="light grey")
 
 #Q11. Use the symbols() function to add circles to the map where
 # the circles are proportional in area to the number of medals
@@ -231,15 +268,18 @@ library("maps")
 # (Be sure to NOT plot circles for countries with 0 medals).
 # adjust the size of the circles if necessary
 
+
 # Check what variables you have in the dataframe using names().
 
 # pull out the contries that won at least one medal (you will need at least
 # the contries longitude, latitude and Total.)
 
 # wonMedal <- your code here
+wonMedal=subset(SO2012Ctry,SO2012Ctry$Total>0)
 # world <- your code here
+world=map(fill=TRUE,col="light grey")
 # symbols( your code here )
-
+symbols(wonMedal$longitude,wonMedal$latitude,circles=wonMedal$Total,add=TRUE)
 
 #Q12. Remake the plot and fill in the circles with a partially
 # transparent gold color. To create this color: 
@@ -257,13 +297,15 @@ install.packages("RColorBrewer")
 library("RColorBrewer")
 
 # display.brewer.all( your code here )
+display.brewer.all()
 # brewer.pal( your code here )
-
+brewer.pal(9,"Set1")
 # myGold <- your selected color
-
+myGold="#FFFF33AA"
 #world <- your code here
+world=map(fill=TRUE,col="light grey")
 #symbols( your code here )
-
+symbols(wonMedal$longitude,wonMedal$latitude,circles=wonMedal$Total,add=TRUE,bg=myGold)
 
 ## That was the FINAL version of this plot
 
@@ -278,7 +320,7 @@ library("RColorBrewer")
 # in the Olympics.
 
 # load( )
-
+load("C:/Users/Zirui/src/stat133/assignments/hw2/London2012ALL_ATHLETES.rda")
 # There is one observation for each athlete. 
 # (Actually, about 20 athletes have two records if they
 # competed in different sporting events. Let's not worry about that.)
@@ -297,12 +339,13 @@ names(athletes)
 
 # How many athletes competed in the 2012 Olympics?
 # n.athletes <- your code here
+n.athletes=nrow(athletes)
 
 # How many women competed?
 
 # What proportion of the participants were women?
 # frac.women <- your code here
-
+women_athletes=subset[athletes,athletes$Sex=="F"]
 # How many sports were there?
 # n.sports <- your code here
 
