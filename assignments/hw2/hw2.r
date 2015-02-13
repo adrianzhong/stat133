@@ -51,7 +51,7 @@
 # the hw3 directory in the file WR1500MeterMen.rda.
 
 # load the data
-
+load("C:/Users/Zirui/src/stat133/assignments/hw2/WR1500MeterMen.Rda")
 # The name of the object loaded is wr1500m
 # The time (in the column "times") in these data are recorded in seconds, 
 # and they are seconds over 3 minutes. 
@@ -345,10 +345,14 @@ n.athletes=nrow(athletes)
 
 # What proportion of the participants were women?
 # frac.women <- your code here
-women_athletes=subset[athletes,athletes$Sex=="F"]
+women_athletes=subset(athletes,athletes$Sex %in%"F")
+n.women=nrow(women_athletes)
+frac.women=n.women/n.athletes
+
+
 # How many sports were there?
 # n.sports <- your code here
-
+n.sports=length(table(athletes$Sport))
 
 #Q14. Make a barplot of Sport and Sex that emphasizes the 
 # important differences. To do this, first make a table of 
@@ -358,11 +362,14 @@ women_athletes=subset[athletes,athletes$Sex=="F"]
 # barplots provides the easiest comparison. 
 
 # athTab <- your code here
+athTab=table(athletes$Sport,athletes$Sex)
 # make two barplots
-
+barplot(athTab,beside = TRUE)
+barplot(athTab,beside = FALSE)
 
 # what should beside be set to, T/F?
 # set.beside <- your answer
+set.beside=TRUE
 
 ### Barplot with beside = TRUE provides the easiest comparison. 
 
@@ -372,15 +379,16 @@ women_athletes=subset[athletes,athletes$Sex=="F"]
 # plot in Q 14. 
 
 # athTab2 <- table()
+athTab2=table(athletes$Sex,athletes$Sport)
 # make barplot
-
+barplot(athTab2,beside = TRUE)
 
 # Compare the barplot with (Sex, Sport) vs (Sport, Sex). 
 # Which makes a more interesting visual comparison, plot 1 or 2?
 # store your answer (1 or 2) in best.plot.
 
 # best.plot <- your answer
-
+best.plot=2
 
 # Q16. Notice that the bars are in alphabetical order by sport.
 # To facilitate comparisons, we might want to arrange
@@ -393,8 +401,9 @@ women_athletes=subset[athletes,athletes$Sex=="F"]
 # increasing height.
 
 # orderSport <- your code here
+orderSport=order(table(athletes$Sport))
 # barplot( your code here )
-
+barplot(athTab2[1:2,orderSport],beside=TRUE)
 
 # Q17. Finally to make the plot more informaation rich, try turning
 # the x-axis labels on their side. To do this, find a parameter
@@ -403,7 +412,7 @@ women_athletes=subset[athletes,athletes$Sex=="F"]
 # parameter can be added in the call to barplot().
 # Also find and use a parameter to shrink the text for these labels. 
 # Lastly, add a title to the plot.
-
+barplot(athTab2[1:2, orderSport], beside = TRUE, cex.names = 0.7, las =2, main = "Omlypic Games Gender Distribution of Different Activities")
 
 # This was the final version of the 4th plot.
 
