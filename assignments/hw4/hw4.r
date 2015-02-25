@@ -92,7 +92,7 @@ recipeConversion <- function(recipe){
    return (recipe)
 }
 #df=data.frame(amount=c(1,2,3),unit=c("cup","cups","oz"),ingredient=c("a","b","c"))
-df=data.frame(amount=c(1,2,3),unit=c("cup","cups","oz"),ingredient=c("a","b","c"),stringsAsFactors=F)
+#df=data.frame(amount=c(1,2,3),unit=c("cup","cups","oz"),ingredient=c("a","b","c"),stringsAsFactors=F)
 
 #### Function #4a
 # Implement the function "bootstrapVarEst"
