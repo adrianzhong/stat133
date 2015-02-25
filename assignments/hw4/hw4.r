@@ -14,10 +14,14 @@
 #   element of <data.list>
 
 listLengths <- function(data.list) {
-
-    # your code here
-
+  listlength=c()
+  for (i in 1:length(data.list)){
+    listlength[i]=length(data.list[[i]])
+  }
+  return (listlength)
 }
+#mylist=list(c(1,2,3,4),c(1,2,3,4,5),c(1,2,3,4,5,6))
+#listLengths(mylist)
 
 #### Function 2
 #### Implement the function "powers"
@@ -30,8 +34,13 @@ listLengths <- function(data.list) {
 # <x.powers> : A matrix of size [n x k] where the first column is x, the second column x^2, the third column x^4, etc.
 #              the column names should be : "x", "x^2", "x^3" etc.
 
-powers <- function(x, k){
-
+powers <- function(x, k){ 
+  original_x=x
+  for (i in 2:k) {
+  x=c(x,original_x^i)
+  }
+  a=matrix(x,nrow=length(original_x),ncol=k)
+  return (a)
 }
 
  
@@ -64,9 +73,26 @@ powers <- function(x, k){
 
 # Put your code here
 recipeConversion <- function(recipe){
-
+   recipe=data.frame(recipe,stringsAsFactors=F)
+   if (any(names(recipe)!=c("amount","unit","ingredient"))) {
+     warning("Wrong type data frame")
+     break
+   }
+   n=nrow(recipe)
+   for (i in 1:n){
+     if (any(recipe[i,2]=="cup"|recipe[i,2]=="cups")){
+      recipe[i,1]=recipe[i,1]*236.6
+      recipe[i,2]="ml"
+     }
+     else if (recipe[i,2]=="oz"){
+       recipe[i,1]=recipe[i,1]* 28.3
+       recipe[i,2]="gr"
+     }
+   }
+   return (recipe)
 }
-
+#df=data.frame(amount=c(1,2,3),unit=c("cup","cups","oz"),ingredient=c("a","b","c"))
+df=data.frame(amount=c(1,2,3),unit=c("cup","cups","oz"),ingredient=c("a","b","c"),stringsAsFactors=F)
 
 #### Function #4a
 # Implement the function "bootstrapVarEst"
@@ -90,7 +116,11 @@ recipeConversion <- function(recipe){
 # -- The bootstrap variance is the sample variance of mu_1, mu_2, ..., mu_B
 
 bootstrapVarEst <- function(x, B){
-
+  mu=c()
+  for (i in 1:B){
+    mu[i]=mean(sample(x,size=length(x),replace=TRUE))
+  }
+  return (var(mu))
 }
 
 #### Function #4b
@@ -111,9 +141,14 @@ bootstrapVarEst <- function(x, B){
 #     for this reduced sample calculate the sample mean (get mu_1, mu_2, ..., mu_n)
 # -- The jackknife variance is the sample variance of mu_1, mu_2, ..., mu_n
 
-jackknifeVarEst <- fuction(x){
-
+jackknifeVarEst <- function(x){
+    mu=c()
+    for (i in 1:length(x)){
+      mu[i]=mean(x[-i])
+    }
+    return (var(mu))
 }
+x=c(1,2,3,4)
 
 #### Function #4c
 #### Implement the function "samplingVarEst"
@@ -127,8 +162,13 @@ jackknifeVarEst <- fuction(x){
 
 # Note: this function calls the previous two functions.
 
-samplingVarEst <- function(  ){
-
+samplingVarEst <- function(x,type="bootstrap"){
+  if (type=="bootstrap"){
+    return (bootstrapVarEst(x,5000))
+  }
+  else if (type=="jackknife"){
+    return (jackknifeVarEst(x))
+  }
 }
 
 
