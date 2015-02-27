@@ -73,7 +73,9 @@ powers <- function(x, k){
 
 # Put your code here
 recipeConversion <- function(recipe){
-   recipe=data.frame(recipe,stringsAsFactors=F)
+   recipe$unit=as.character(recipe$unit)
+   #recipe=data.frame(recipe,stringsAsFactors=F)
+   as.character(recipe[,2])
    if (any(names(recipe)!=c("amount","unit","ingredient"))) {
      warning("Wrong type data frame")
      break
@@ -81,11 +83,11 @@ recipeConversion <- function(recipe){
    n=nrow(recipe)
    for (i in 1:n){
      if (any(recipe[i,2]=="cup"|recipe[i,2]=="cups")){
-      recipe[i,1]=recipe[i,1]*236.6
+      recipe[i,1]=round(recipe[i,1]*236.6/5)*5
       recipe[i,2]="ml"
      }
      else if (recipe[i,2]=="oz"){
-       recipe[i,1]=recipe[i,1]* 28.3
+       recipe[i,1]=round(recipe[i,1]* 28.3/5)*5
        recipe[i,2]="gr"
      }
    }
@@ -148,7 +150,7 @@ jackknifeVarEst <- function(x){
     }
     return (var(mu))
 }
-x=c(1,2,3,4)
+#x=c(1,2,3,4)
 
 #### Function #4c
 #### Implement the function "samplingVarEst"
