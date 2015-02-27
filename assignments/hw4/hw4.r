@@ -74,7 +74,6 @@ powers <- function(x, k){
 # Put your code here
 recipeConversion <- function(recipe){
    recipe$unit=as.character(recipe$unit)
-   #recipe=data.frame(recipe,stringsAsFactors=F)
    as.character(recipe[,2])
    if (any(names(recipe)!=c("amount","unit","ingredient"))) {
      warning("Wrong type data frame")
