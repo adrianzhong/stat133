@@ -1,0 +1,23 @@
+{
+    "email": "zhongzirui@berkeley.edu", 
+    "github_name": "adrianzhong", 
+    "grades": {
+        "hw1": {
+            "note": "", 
+            "hash": "42d4e2d7b866a1e7a073031c14dc7aeee2013140", 
+            "earned": 18, 
+            "possible": 20, 
+            "penalty": 0, 
+            "parts": {
+                "hw1": {
+                    "possible": 20, 
+                    "earned": 18
+                }
+            }
+        }
+    }, 
+    "login": "adrianzhong", 
+    "name": "Zirui Zhong", 
+    "status": "enrolled", 
+    "url": "git@github.com:adrianzhong/stat133.git"
+}
