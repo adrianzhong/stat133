@@ -8,10 +8,11 @@
 ## that stores the state of the system (i.e. location of red and blue cars)
 
 bml.init <- function(r, c, p){
-
-  
-   #return(m)
+   m=matrix(0,r,c)
+   m=apply(m,c(1,2),function(x) sample(c(0,1,2),1,prob=c(1-p,p/2,p/2)))
+   return(m)
 }
+
 
 #### Function to move the system one step (east and north)
 ## Input : a matrix [m] of the same type as the output from bml.init()
@@ -22,9 +23,37 @@ bml.init <- function(r, c, p){
 ## you can write extra functions that do just a step north or just a step east.
 
 bml.step <- function(m){
-
-  
-   #return(list(m, grid.new))
+  initial_m1=m
+  for (i in 1:nrow(m)) {
+    for (j in 1:(ncol(m)-1)){
+      if (initial_m1[i,j]==1 & initial_m1[i,j+1]==0){
+        m[i,j+1]=1
+        m[i,j]=0
+      }
+    }
+    if (initial_m1[i,ncol(m)]==1 & initial_m1[i,1]==0){
+      m[i,1]=1
+      m[i,ncol(m)]=0
+    }    
+  }
+  initial_m2=m
+  for (j in 1:ncol(m)){
+    for (i in nrow(m):2){
+      if (initial_m2[i,j]==2 & initial_m2[i-1,j]==0){
+        m[i-1,j]=2
+        m[i,j]=0
+      }
+    }
+    if (initial_m2[1,j]==2 & initial_m2[nrow(m),j]==0){
+      m[nrow(m),j]=2
+      m[1,j]=0
+    }
+  }  
+  if(any(m!=initial_m1))
+    grid.new=T
+  else
+    grid.new=F
+  return(list(m, grid.new))  
 }
 
 #### Function to do a simulation for a given set of input parameters
@@ -32,5 +61,12 @@ bml.step <- function(m){
 ## Output : *up to you* (e.g. number of steps taken, did you hit gridlock, ...)
 
 bml.sim <- function(r, c, p){
-
+  initial_m=bml.init(r,c,p)
+  max_iteration=10000
+  for (i in 1:max_iteration){
+    new_m=bml.step(initial_m)
+    if (!(new_m[[2]]))
+      break
+  }
+  return (list(i,new_m[[1]],new_m[[2]]))
 }
