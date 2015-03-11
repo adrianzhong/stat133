@@ -62,9 +62,10 @@ bml.step <- function(m){
 
 bml.sim <- function(r, c, p){
   initial_m=bml.init(r,c,p)
-  max_iteration=10000
+  new_m=list(initial_m,T)
+  max_iteration=3000
   for (i in 1:max_iteration){
-    new_m=bml.step(initial_m)
+    new_m=bml.step(new_m[[1]])
     if (!(new_m[[2]]))
       break
   }
