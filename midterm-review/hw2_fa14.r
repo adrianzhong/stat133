@@ -30,7 +30,7 @@
 # consider makes and females separately).
 
 # OW_NHANES <- your code here
-
+OW_NHANES=(family$gender=="m" & family$bmi>26) | (family$gender=="f" & family$bmi>25)
 
 # Q2.  Here is an alternative way to create the same vector that introduces some
 # useful functions and ideas
@@ -42,7 +42,7 @@
 # is 26 and second element is 25.
 
 # OWval <- your code here
-
+OWval=c(26,25)
 
 # Create the OW_limit vector by subsetting OWval by position, where the
 # positions are the numeric values in the gender variable (i.e. use as.numeric()
