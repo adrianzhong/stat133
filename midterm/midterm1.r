@@ -29,7 +29,7 @@ female.pop=SO2012Ctry$Female/(SO2012Ctry$Female+SO2012Ctry$Male)
 # subset.nobronze <- your code here
 # subset.threebronze <- your code here
 subset.nobronze=SO2012Ctry[SO2012Ctry$Bronze==0,]
-subset.threebronze=SO2012Ctry[SO2012Ctry$Bronze>3,]
+subset.threebronze=SO2012Ctry[SO2012Ctry$Bronze>=3,]
 
 
 # For each of your subsets, create a vector giving the population size. Store
