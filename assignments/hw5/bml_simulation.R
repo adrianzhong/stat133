@@ -108,10 +108,23 @@ for (j in 1:length(prob)){
 }
 colnames(result.matrix2) <- prob
 
+##########question 3
+size_prob=function(r,c){
+  v=c()
+  for (i in 1:25){
+    print(i)
+    v=c(v, bml.sim(r,c,0.4)[[3]])
+  }
+  return(v)
+}
+size_10=size_prob(10,10)  #48
+size_25=size_prob(25,25)   #48
+size_50=size_prob(50,50)    #38
+size_100=size_prob(100,100)  #23
+size_250=size_prob(250,250)  
+shape1=size_prob(40,40)
+shape2=size_prob(80,20)
+shape3=size_prob(160,10)
+shape4=size_prob(320,5)
 
-#see the pattern
-sample1=bml.sim(500,500,0.4)
-image(sample1[[2]],col=c("white","red","blue"))
 
-sample2=bml.sim(500,500,0.6)
-image(sample2[[2]],col=c("white","red","blue"))

@@ -231,6 +231,7 @@ symbols(log10(SO2012Ctry$pop),log10(SO2012Ctry$GDP_per_person),circles=SO2012Ctr
 
 # your plotting code here
 Country_with_medals=subset(SO2012Ctry, SO2012Ctry$Total>0)
+#Country_with_medals2=SO2012Ctry[SO2012Ctry$Total>0,]
 Country_with_no_medals=subset(SO2012Ctry,SO2012Ctry$Total==0)
 symbols(log10(Country_with_medals$pop),log10(Country_with_medals$GDP_per_person),circles=Country_with_medals$Total)
 points(log10(Country_with_no_medals$pop),log10(Country_with_no_medals$GDP_per_person),pch=".")
@@ -403,7 +404,7 @@ best.plot=2
 # orderSport <- your code here
 orderSport=order(table(athletes$Sport))
 # barplot( your code here )
-barplot(athTab2[1:2,orderSport],beside=TRUE)
+barplot(athTab2[,orderSport],beside=TRUE)
 
 # Q17. Finally to make the plot more informaation rich, try turning
 # the x-axis labels on their side. To do this, find a parameter

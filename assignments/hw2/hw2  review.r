@@ -103,14 +103,18 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 
 # your code here
 # new_year <- your code here
-
-
-
+new_year=wr1500m$year
+for (i in 1:length(wr1500m$month)){
+  if (is.na(wr1500m$month[i]))
+    new_year[i]=new_year[i]+0.5
+  else
+    new_year[i]=new_year[i]+wr1500m$month[i]/12
+}
 # wr1500m <- your code here
-
+wr1500m$new_year=new_year
 
 # plot( your code here )
-
+plot(wr1500m$new_year,wr1500m$times_sec,type="s")
 
 
 # Q3. The current world record was set in 1998. If we want to
@@ -122,13 +126,13 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 # then use the lines() function to add the additional segment.
 
 # wr_1998 <- your code here
-
+wr_1998=min(wr1500m$times_sec)
 
 # plot( your code here )
-
+plot(wr1500m$year,wr1500m$times_sec,type="s",xlim=c(1890,2020))
 
 # lines( your code here )
-
+lines(c(1998,2014),c(wr_1998,wr_1998),"l")
 
 
 # Q4. There are two times where the record stood for several
@@ -144,19 +148,19 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 # of wr1500m$athlete to access it.
 
 # wr_1944 <- your code here
-
-
-# abline( your code here )
-
+wr_1944=wr1500m[wr1500m$year==1944,"times_sec"]
 
 # abline( your code here )
+abline(v=1944,col="grey")
 
+# abline( your code here )
+abline(v=1998,col="grey")
 
 # text( your code here )
-
+text(1944,wr_1944+5,labels=wr1500m[wr1500m$year==1944,"athlete"],pos=4,cex=0.7)
 
 # text( your code here )
-
+text(1998,wr_1998+5,labels=wr1500m[wr1500m$year==1998,"athlete"],pos=4,cex=0.7)
 
 
 # Q5. Now we are ready to add other contextual information.
@@ -164,7 +168,13 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 # This is the FINAL version of the plot of world record times.
 
 # put your final version of the plotting commands below.
-
+plot(wr1500m$year,wr1500m$times_sec,type="s",xlim=c(1890,2020),xlab="year",ylab="worldrecord",main="World record change with time")
+lines(c(1998,2014),c(wr_1998,wr_1998),"l")
+wr_1944=wr1500m[wr1500m$year==1944,"times_sec"]
+abline(v=1944,col="grey")
+abline(v=1998,col="grey")
+text(1944,wr_1944+5,labels=wr1500m[wr1500m$year==1944,"athlete"],pos=4,cex=0.7)
+text(1998,wr_1998+5,labels=wr1500m[wr1500m$year==1998,"athlete"],pos=4,cex=0.7)
 
 
 ## You have finised the first plot!!
@@ -182,7 +192,7 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 # It can be loaded into R with
 
 # load( your code here )
-
+load("SummerOlympics2012Ctry.rda")
 
 
 #Q6 Take a look at the variables in this data frame.
@@ -205,7 +215,7 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 # plot violates and why.
 
 # plot( your code here )
-
+plot(SO2012Ctry$pop,SO2012Ctry$GDP,"p")
 
 
 ### Data stand out, Values are plotted on the top of each other  
@@ -220,13 +230,13 @@ plot(wr1500m$year,wr1500m$times_sec,type="s")
 # total number of medals.
 
 # GDP_per_person <- your code here
-
+GDP_per_person=SO2012Ctry$GDP/SO2012Ctry$pop
 
 # SO2012Ctry <- your code here
-
+SO2012Ctry$GDP_per_person=GDP_per_person
 
 # symbols( your code here )
-
+symbols(log10(SO2012Ctry$pop),log10(SO2012Ctry$GDP_per_person),circles=SO2012Ctry$Total)
 
 
 # Q8. It appears that the countries with no medals are circles too.
