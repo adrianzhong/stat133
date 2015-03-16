@@ -111,20 +111,72 @@ colnames(result.matrix2) <- prob
 ##########question 3
 size_prob=function(r,c){
   v=c()
-  for (i in 1:25){
+  for (i in 1:50){
     print(i)
     v=c(v, bml.sim(r,c,0.4)[[3]])
   }
   return(v)
 }
-size_10=size_prob(10,10)  #48
-size_25=size_prob(25,25)   #48
-size_50=size_prob(50,50)    #38
-size_100=size_prob(100,100)  #23
-size_250=size_prob(250,250)  
-shape1=size_prob(40,40)
-shape2=size_prob(80,20)
-shape3=size_prob(160,10)
-shape4=size_prob(320,5)
+size_5=size_prob(5,5)
+size_10=size_prob(10,10)  #48/50
+size_25=size_prob(25,25)   #48/50
+size_50=size_prob(50,50)    #38/50
+size_100=size_prob(100,100)  #23/50
+size_250=size_prob(250,250)  #/25
+shape1=size_prob(40,40)     44#/50
+shape2=size_prob(80,20)     50#/50
+shape3=size_prob(160,10)    50#/50
+shape4=size_prob(320,5)     50#/50
+shape5=size_prob(800,2)    #50/50
 
 
+barplot(summary,ylim=c(0,1.1),names.arg=c("0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9"),xlab="density",ylab="probability of free flow",main="probability of free flow with different density")
+text(0.7,summary[1]+0.05,labels=summary[1])
+text(1.9,summary[2]+0.05,labels=summary[2])
+text(3.1,summary[3]+0.05,labels=summary[3])
+text(4.3,summary[4]+0.05,labels=summary[4])
+text(5.5,summary[5]+0.05,labels=summary[5])
+text(6.7,summary[6]+0.05,labels=summary[6])
+text(7.9,summary[7]+0.05,labels=summary[7])
+text(9.1,summary[8]+0.05,labels=summary[8])
+text(10.3,summary[9]+0.05,labels=summary[9])
+text(11.5,summary[10]+0.05,labels=summary[10])
+text(12.7,summary[11]+0.05,labels=summary[11])
+
+
+b=c()
+for (i in 1:11)
+  b=c(b,mean(result.matrix2[,i][a[,i]]))
+b=round(b,3)
+barplot(b,ylim=c(0,20),names.arg=c("0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9"),xlab="density",ylab="probability of free flow")
+text(0.7,b[1]+0.7,labels=b[1])
+text(1.9,b[2]+0.7,labels=b[2])
+text(3.1,b[3]+0.7,labels=b[3])
+text(4.3,b[4]+0.7,labels=b[4])
+text(5.5,b[5]+0.7,labels=b[5])
+text(6.7,b[6]+0.7,labels=b[6])
+text(7.9,b[7]+0.7,labels=b[7])
+text(9.1,b[8]+0.7,labels=b[8])
+text(10.3,b[9]+0.7,labels=b[9])
+text(11.5,b[10]+0.7,labels=b[10])
+text(12.7,b[11]+0.7,labels=b[11])
+
+result.matrix3=matrix(ncol=11,nrow=100)
+for (i in 1:11){
+  for (j in 1:100){
+  if (result.matrix2[j,i]==3000)
+    result.matrix3[j,i]=b[i]
+  else
+    result.matrix3[j,i]=result.matrix2[j,i]
+  }
+}
+colnames(result.matrix3) <- prob  
+boxplot(result.matrix3, xlab="Density", ylab="summary of gridlock",main=,names.arg=c("0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9"))
+
+
+size=c(sum(size_10),sum(size_25),sum(size_50),sum(size_100))/50
+barplot(size,ylim=c(0,1.1),names.arg=c("10*10","25*25","50*50","100*100"),xlab="size of the grid",ylab="probability of free flow")
+text(0.7,size[1]+0.05,labels=size[1])
+text(1.9,size[2]+0.05,labels=size[2])
+text(3.1,size[3]+0.05,labels=size[3])
+text(4.3,size[4]+0.05,labels=size[4])
