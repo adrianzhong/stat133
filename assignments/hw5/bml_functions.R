@@ -13,7 +13,6 @@ bml.init <- function(r, c, p){
    return(m)
 }
 
-
 #### Function to move the system one step (east and north)
 ## Input : a matrix [m] of the same type as the output from bml.init()
 ## Output : TWO variables, the updated [m] and a logical variable
@@ -24,6 +23,7 @@ bml.init <- function(r, c, p){
 
 bml.step <- function(m){
   initial_m1=m
+  if (nrow(m)>=2 & ncol(m)>=2) {
   for (i in 1:nrow(m)) {
     for (j in 1:(ncol(m)-1)){
       if (initial_m1[i,j]==1 & initial_m1[i,j+1]==0){
@@ -48,12 +48,38 @@ bml.step <- function(m){
       m[nrow(m),j]=2
       m[1,j]=0
     }
-  }  
+  }
   if(any(m!=initial_m1))
     grid.new=T
   else
     grid.new=F
   return(list(m, grid.new))  
+  }
+  if (nrow(m)==1 & ncol(m)>=2){
+    for (j in 1:(ncol(m)-1)){
+      if (initial_m1[1,j]==1 & initial_m1[1,j+1]==0){
+        m[1,j+1]=1
+        m[1,j]=0
+      }
+    }
+    if (initial_m1[1,ncol(m)]==1 & initial_m1[1,1]==0){
+      m[1,1]=1
+      m[1,ncol(m)]=0
+  }
+}
+if (nrow(m)>=2 & ncol(m)==1){
+  for (j in 1:(ncol(m)-1)){
+    if (initial_m1[1,j]==1 & initial_m1[1,j+1]==0){
+      m[1,j+1]=1
+      m[1,j]=0
+    }
+  }
+  if (initial_m1[1,ncol(m)]==1 & initial_m1[1,1]==0){
+    m[1,1]=1
+    m[1,ncol(m)]=0
+  }
+}
+
 }
 
 #### Function to do a simulation for a given set of input parameters

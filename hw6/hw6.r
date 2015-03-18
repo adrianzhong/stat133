@@ -29,16 +29,24 @@
 
 sim.doctors <- function(initial.doctors, n.doctors, n.days, p){
 
-  # Set up the output variable, define it as a matrix then use initial.doctors
+  # Set up the output variable, define it as a matrix then use initial.doctors 
   # to set the first column (day)
-
+  has_adopted=matrix(initial.doctors,nrow=n.doctors,ncol=n.days)
+  
   # Run a simulation for <n.days> (use a for loop).  In the loop:
   # 1) pick two random doctors
   # 2) check if one has adopted the other hasn't
   # 3) convert the non-adopter with probability p
-
+  for (i in 2:n.days){
+    has_adopted[,i]=has_adopted[,i-1]
+    sampled=sample(c(1:n.doctors),2)
+    if(has_adopted[sampled[1],i-1]==0 & has_adopted[sampled[2],i-1]==1)
+      has_adopted[sampled[1],i]=sample(c(0,1),1,prob=c(1-p,p))
+    if(has_adopted[sampled[1],i-1]==1 & has_adopted[sampled[2],i-1]==0)
+      has_adopted[sampled[2],i]=sample(c(0,1),1,prob=c(1-p,p))     
+  }
   # return the output
-
+  return (has_adopted)
 }
 
 # When you test your function you have to generate <initial.doctors> and
@@ -46,8 +54,31 @@ sim.doctors <- function(initial.doctors, n.doctors, n.days, p){
 
 set.seed(42)
 # Generate a value for <initial.doctors> that has 10% 1s and 90% 0s.
+initial.doctors=sample(c(0,1),10,prob=c(0.9,0.1),replace=T)
+n.doctors=length(initial.doctors)
+n.days=10
 # Run your function for at least 5 different values of <p> and plot
+p_0.2=sim.doctors(initial.doctors, n.doctors, n.days, 0.2)
+p_0.4=sim.doctors(initial.doctors, n.doctors, n.days, 0.4)
+p_0.6=sim.doctors(initial.doctors, n.doctors, n.days, 0.6)
+p_0.8=sim.doctors(initial.doctors, n.doctors, n.days, 0.8)
+p_1.0=sim.doctors(initial.doctors, n.doctors, n.days, 1.0)
 # on x-axis: days,
 # on y-axis : the number of doctors that have already adopted the drug, on that day
 # Put all 5 lines in one figure (e.g. use first plot() then lines() for the subsequent lines)
-
+count_sum=function(x){
+  a=c()
+  for (i in 1:ncol(x))
+    a[i]=sum(x[,i])
+  return(a)
+}
+sum_0.2=count_sum(p_0.2)
+sum_0.4=count_sum(p_0.4)
+sum_0.6=count_sum(p_0.6)
+sum_0.8=count_sum(p_0.8)
+sum_1.0=count_sum(p_1.0)
+plot(c(1:n.days),ylim=c(0,10),sum_0.2,xlab="days",ylab="the number of doctors adopted the drug","l")
+lines(c(1:n.days),sum_0.4)
+lines(c(1:n.days),sum_0.6)
+lines(c(1:n.days),sum_0.8)
+lines(c(1:n.days),sum_1.0)

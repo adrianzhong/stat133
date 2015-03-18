@@ -171,11 +171,11 @@ for (i in 1:11){
   }
 }
 colnames(result.matrix3) <- prob  
-boxplot(result.matrix3, xlab="Density", ylab="summary of gridlock",main=,names.arg=c("0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9"))
+boxplot(result.matrix3, xlab="Density", ylab="summary of gridlock",main="summary of gridlock situation with different density",names.arg=c("0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9"))
 
 
 size=c(sum(size_10),sum(size_25),sum(size_50),sum(size_100))/50
-barplot(size,ylim=c(0,1.1),names.arg=c("10*10","25*25","50*50","100*100"),xlab="size of the grid",ylab="probability of free flow")
+barplot(size,ylim=c(0,1.1),main="probability of free flow with different size of grid",names.arg=c("10*10","25*25","50*50","100*100"),xlab="size of the grid",ylab="probability of free flow")
 text(0.7,size[1]+0.05,labels=size[1])
 text(1.9,size[2]+0.05,labels=size[2])
 text(3.1,size[3]+0.05,labels=size[3])
