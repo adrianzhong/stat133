@@ -54,9 +54,9 @@ sim.doctors <- function(initial.doctors, n.doctors, n.days, p){
 
 set.seed(42)
 # Generate a value for <initial.doctors> that has 10% 1s and 90% 0s.
-initial.doctors=sample(c(0,1),10,prob=c(0.9,0.1),replace=T)
-n.doctors=length(initial.doctors)
-n.days=10
+n.doctors=100
+initial.doctors=sample(c(0,1),size=n.doctors,prob=c(0.9,0.1),replace=T)
+n.days=500
 # Run your function for at least 5 different values of <p> and plot
 p_0.2=sim.doctors(initial.doctors, n.doctors, n.days, 0.2)
 p_0.4=sim.doctors(initial.doctors, n.doctors, n.days, 0.4)
@@ -77,7 +77,7 @@ sum_0.4=count_sum(p_0.4)
 sum_0.6=count_sum(p_0.6)
 sum_0.8=count_sum(p_0.8)
 sum_1.0=count_sum(p_1.0)
-plot(c(1:n.days),ylim=c(0,10),sum_0.2,xlab="days",ylab="the number of doctors adopted the drug","l")
+plot(c(1:n.days),ylim=c(0,100),sum_0.2,xlab="days",ylab="the number of doctors adopted the drug","l")
 lines(c(1:n.days),sum_0.4)
 lines(c(1:n.days),sum_0.6)
 lines(c(1:n.days),sum_0.8)
