@@ -105,7 +105,7 @@ points(iris$Petal.Length[101:150],iris$Petal.Width[101:150],col="yellow")
 # [3 pt]
 # Make a scatterplot of ( sepal length / petal length) as a function of index (order)
 # Color the plotting symbol by Species (any 3 colors)
-plot(1:50,iris$Sepal.Length[1:50]/iris$Petal.Length[1:50],xlim=c(1,150),col="red")
+plot(1:150,iris$Sepal.Length[1:150]/iris$Petal.Length[1:150],xlim=c(1,150),col="red")
 points(51:100,iris$Sepal.Length[51:100]/iris$Petal.Length[51:100],col="blue")
 points(101:150,iris$Sepal.Length[101:150]/iris$Petal.Length[101:150],col="yellow")
 ##  apply statements
