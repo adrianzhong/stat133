@@ -14,10 +14,23 @@
                     "earned": 18
                 }
             }
+        }, 
+        "hw4": {
+            "note": "", 
+            "hash": "ad355e37eaf67e1e668e180c47d59c42debcf189", 
+            "earned": 20, 
+            "possible": 20, 
+            "penalty": 0, 
+            "parts": {
+                "hw4": {
+                    "possible": 20, 
+                    "earned": 20
+                }
+            }
         }
     }, 
     "login": "adrianzhong", 
     "name": "Zirui Zhong", 
-    "status": "enrolled", 
+    "status": "unenrolled", 
     "url": "git@github.com:adrianzhong/stat133.git"
 }
