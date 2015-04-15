@@ -352,7 +352,7 @@ plot(mds)
 presParty=c()
 uniquepre=colnames(presidentWordMat)
 for (i in 1:length(uniquepre)) {
-  presParty[i]=speechesDF[speechesDF$Pres==uniquepre[i],"party"][1]
+  presParty[i]=as.character(speechesDF[speechesDF$Pres==uniquepre[i],"party"][1])
 }
 
 #presParty[i]=as.character(speechesDF[speechesDF$Pres==uniquepre[i],"party"][1])
