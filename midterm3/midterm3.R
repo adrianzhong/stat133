@@ -104,4 +104,6 @@ mostCommonLetter=function(chvec){
     return (names(num)[1:2])
   if (num[1]==num[2] & num[2]==num[3] & num[3]>num[4])
     return (names(num)[1:3])
+  if (num[1]==num[2] & num[2]==num[3] & num[3]==num[4] & num[4]>num[5])
+    return (names(num)[1:4]) 
 }
