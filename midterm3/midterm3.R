@@ -42,7 +42,7 @@ numDigits=function(chvec){
 # in a string to them; every instance of he to they and every instance of 
 # his to their. You can assume everything is lower case. Be careful not to 
 # replace words that contain him/he/his (eg. you don't want to replace the 
-# with tthey). Your function should take the argument
+# with they). Your function should take the argument
 #   <chvec>: A character vector
 #
 # and return
@@ -54,7 +54,25 @@ all.equal(
   "she went to the store her mother gave her"
 )
 
-
+hisToTheir=function(chvec){
+  a=unlist(strsplit(chvec," "))
+  b=length(a)
+  a=gsub("^him$","them",a)
+  a=gsub("^he$","they",a)
+  a=gsub("^his$","thier",a)  
+  #for (i in 1:b){
+    #if (a[i]=="him") 
+    #  a[i]="them"
+    #else 
+    #  (if (a[i]=="he"))
+    #    a[i]="they"
+    #else
+    #  (if (a[i]=="his"))
+    #    a[i]="their"
+  #}
+  a=paste(a, collapse=" ")
+  return (a) 
+}
 
 # Write a function called mostCommonLetter that finds the most common 
 # letter in a string. If there is a tie for most common letter return 
@@ -68,3 +86,20 @@ all.equal(
 #  <letter> The most common letter or letters in the string.
 # For example mostCommonLetter("aabbccccdddd") should return 
 # [1] "c" "d"
+mostCommonLetter=function(chvec){
+  chvec=gsub("[[:punct:]]+","",chvec)
+  chvec=gsub("[0-9]+","",chvec)
+  chvec=unlist(strsplit(chvec,""))
+  letter=unique(chvec)
+  num=c()
+  for (i in 1:length(letter))
+    {
+    num[i]=length(grep(letter[i],chvec))
+    }
+  names(num)=letter
+  num=sort(num,decreasing=T)
+  if (num[1]>num[2])
+    return (names(num)[1])
+  if (num[1]=num[2] & num[2]>num[3])
+    return (names(num)[1:3])
+}
