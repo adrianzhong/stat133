@@ -100,6 +100,8 @@ mostCommonLetter=function(chvec){
   num=sort(num,decreasing=T)
   if (num[1]>num[2])
     return (names(num)[1])
-  if (num[1]=num[2] & num[2]>num[3])
+  if (num[1]==num[2] & num[2]>num[3])
+    return (names(num)[1:2])
+  if (num[1]==num[2] & num[2]==num[3] & num[3]>num[4])
     return (names(num)[1:3])
 }
