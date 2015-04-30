@@ -82,7 +82,7 @@ hotelCal.split=unlist(strsplit(hotelCal.split," "))
 #     updated. For example updateDate(c('May, 2008', 'June, 2011'), '2008') should
 #     return 'May, 2015'.
 updateDate <- function(dates, old.yr) {
-  return(gsub(old.yr,2015,dates))
+  return(gsub(old.yr,2015,dates[grep(old.yr,dates)]))
 }
 
 
