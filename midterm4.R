@@ -66,6 +66,7 @@ hotelCal <- "On a dark desert highway, cool wind in my hair. Warm smell of colit
 # hotelCal.split <- <your code here> 
 hotelCal.split=tolower(hotelCal)
 hotelCal.split=gsub("[[:punct:]]","",hotelCal.split)
+hotelCal.split=gsub("  "," ",hotelCal.split)
 hotelCal.split=unlist(strsplit(hotelCal.split," "))
 
 
