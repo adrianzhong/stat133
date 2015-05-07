@@ -76,13 +76,14 @@ z <- sort(rnorm(111))
 # a random permutation of the even numbers from 2 to 222
   set.seed(31415)
 v <- sample(seq(2,222,2),111)
-
+#if it is a permutation problem, which means all of the number will be selected, it is ok not put n(111) in the argument
   
 # [1 pt]
 # Create [w], a random permutation of the numeric values of a deck of cards
 # (i.e. just the numbers 1 through 13 each repeated 4 times)
 set.seed(2718)
-w <- sample(rep(c(1:13),4),52)
+w <- sample(rep(c(1:13),4),52)      ###each repeated 4 times!!!! It's 111122223333...
+#should be w=sample(rep(1:13,each=4))
 
   
 # [1 pt]
@@ -90,15 +91,15 @@ w <- sample(rep(c(1:13),4),52)
 # Exponential random variables (hint: rexp) with rate 3
 # (arrange the values by column, as per default)
 set.seed(344)
-m <- matrix(sample(rexp(100,3),100),10,10)
-
+m <- matrix(sample(rexp(100,3),100),10,10)     ###no need to samle!!!!! These numbers are sampled already!
+# should be m <- matrix(rexp(100, rate=3), ncol=10)
   
 # [1 pt]
 # Create [l], a list with 12 elements, each a vector of length 100.
 # Each vector of length 100 of Poisson (hint:rpois) random variables with mean 5
   set.seed(71)
 l=list(rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5),rpois(100,5))
-
+#l <- list(); for(i in 1:12) l[[i]] <- rpois(n=100, lambda=5)
 
 # For the next few tasks you will use the data frame family (size 14x5)
 # LEAVE AS IS:
@@ -151,7 +152,7 @@ mw <- mean(infants[infants$gestation>=259,"bwt"],na.rm=T)
 # [2 pts]
 # Make a box plot of Sepal Length by Species (so 3 boxplots in one plot)
 boxplot(iris$Sepal.Length[1:50],iris$Sepal.Length[51:100],iris$Sepal.Length[101:150])
-
+# boxplot(iris$Sepal.Length ~ iris$Species)
 
 # [3 pts]
 # Make a scatterplot of petal width (y-axis) versus petal length (x-axis)
@@ -160,6 +161,7 @@ boxplot(iris$Sepal.Length[1:50],iris$Sepal.Length[51:100],iris$Sepal.Length[101:
 plot(iris$Petal.Length[100:150],iris$Petal.Width[100:150],xlim=c(0,7),ylim=c(0,2.5),col="red",xlab="Petal Length", ylab="Petal Width")
 points(iris$Petal.Length[51:100],iris$Petal.Width[51:100],col="blue")
 points(iris$Petal.Length[1:50],iris$Petal.Width[1:50],col="yellow")
+#plot(iris$Petal.Length, iris$Petal.Width, xlab="Petal Length", ylab="Petal Width", col=as.numeric(iris$Species))
 
 # [3 pt]
 # Make a scatterplot of ( sepal length / petal length) as a function of index (order)
@@ -167,6 +169,7 @@ points(iris$Petal.Length[1:50],iris$Petal.Width[1:50],col="yellow")
 plot(c(1:50),iris$Sepal.Length[1:50]/iris$Petal.Length[1:50],col="blue",xlim=c(0,150),ylim=c(1,5))
 points(c(51:100),iris$Sepal.Length[51:100]/iris$Petal.Length[51:100],col="red")
 points(c(101:150),iris$Sepal.Length[101:150]/iris$Petal.Length[101:150],col="yellow")
+#plot(iris$"Sepal.Length"/iris$"Petal.Length", col=as.numeric(iris$Species))
 
 ##### We will now use the infant birth data again (data frame infants)
 
@@ -177,12 +180,18 @@ points(c(101:150),iris$Sepal.Length[101:150]/iris$Petal.Length[101:150],col="yel
 # Add a vertical line at gestation=259 (full length pregnancy)
 plot(infants$bwt,infants$gestation,xlab="the birthweight of infants", ylab="the gestation of infants",col=NA)
 points(infants$bwt,infants$gestation,pch="*")
+abline(h=259)
+#plot(infants$bwt ~ infants$gestation, pch='*', col="red", xlab="Gestation in days", ylab="Birth weight in oz")
+#abline(v=259)
+#pay attention to bwt vs. gestation means y vs. x
 # [6 pts]
 # Make a histogram of mother's age (age) and superimpose on it a _blue_ density plot (same variable)
 # Note that the y-axis of the histogram and the density have to be the same...
 # Add x-axis labels
-
-
+hist(infants$age, prob=T, xlab="Mother's age")
+lines(density(infants$age, na.rm=T), col="blue")
+#if in the hist function, the argument of prob=T, the y-axis is the probability of x variale,also called density,
+#if prpb=F, the y-axix is the frequncy, default setting
 #################################################################
 ##### PART III : apply and by statements [15 pts]
 #aplly-array, matrix
@@ -201,12 +210,13 @@ load("Cache500.rda")
 first.cache <- c()
 for (i in 1:length(Cache500))
   first.cache[i]=Cache500[[i]][1]
+#first.cache <- sapply(Cache500, "[", 1)
 
 # [3 pts]
 # Create [mean.cache], a vector of length 500 where each entry is the mean 
 # of the corresponding element of the list Cache500
-
 mean.cache <- sapply(Cache500,mean)
+
 
 # [2 pts]
 # Create [sd.cache], a vector of length 500 where each entry is the sd
@@ -230,7 +240,7 @@ mean.long.cache <- sapply(Cache500,function(x){if (length(x)<50)
 # that has the maximum petal length for each iris species.
 
 max.petal.width <- sapply(list(iris$Petal.Width[1:50],iris$Petal.Width[51:100],iris$Petal.Width[100:150]),max)
-
+#max.petal.width <- as.vector(by(iris$Petal.Width, iris$Species, max))
 #################################################################
 ##### PART IV : functions [20 pts]
 
