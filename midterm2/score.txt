@@ -1,0 +1,5 @@
+w: 13*4=42??  -1
+l: should be length 12, not 10  -1
+first.cache: output should be vector, use 'unlist'  -1
+
+Score: 30/33

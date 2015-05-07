@@ -1,0 +1,18 @@
+Total: 19/20
+
+Function 1
+5/5
+
+Function 2
+5/5
+
+Function 3
+5/5
+But it should be “their” rather than “their”
+
+Function 4
+4/5
+mostCommonLetter("aabbccdd") yields an error. 
+In general the case where there is more than a four way tie
+is not handled correctly. 
+
