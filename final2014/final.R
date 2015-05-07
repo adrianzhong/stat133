@@ -162,6 +162,8 @@ plot(iris$Petal.Length[100:150],iris$Petal.Width[100:150],xlim=c(0,7),ylim=c(0,2
 points(iris$Petal.Length[51:100],iris$Petal.Width[51:100],col="blue")
 points(iris$Petal.Length[1:50],iris$Petal.Width[1:50],col="yellow")
 #plot(iris$Petal.Length, iris$Petal.Width, xlab="Petal Length", ylab="Petal Width", col=as.numeric(iris$Species))
+#plot(iris$Petal.Width ~ iris$Petal.Length,
+#     xlab = "Petal Length", ylab = "Petal Width", col = iris$Species)
 
 # [3 pt]
 # Make a scatterplot of ( sepal length / petal length) as a function of index (order)
@@ -211,6 +213,8 @@ first.cache <- c()
 for (i in 1:length(Cache500))
   first.cache[i]=Cache500[[i]][1]
 #first.cache <- sapply(Cache500, "[", 1)
+#first.cache <- sapply(Cache500, function(x) x[1])
+#first.cache=unlist(sapply(Cache500,head,n=1))   head(x,n=1) ==> extract the first element 
 
 # [3 pts]
 # Create [mean.cache], a vector of length 500 where each entry is the mean 
@@ -241,6 +245,7 @@ mean.long.cache <- sapply(Cache500,function(x){if (length(x)<50)
 
 max.petal.width <- sapply(list(iris$Petal.Width[1:50],iris$Petal.Width[51:100],iris$Petal.Width[100:150]),max)
 #max.petal.width <- as.vector(by(iris$Petal.Width, iris$Species, max))
+#by(data, INDICES, FUN, ..., simplify = TRUE)
 #################################################################
 ##### PART IV : functions [20 pts]
 
@@ -270,6 +275,16 @@ firstColToNames <- function(x){
     return (x)
 }
 
+#firstColToNames <- function(m){
+#  # students do not need to include this test
+#  if(length(dim(m))!=2) print("m is not a matrix or dataframe")
+#  else{
+#    names <- as.character(m[,1])
+#    m <- m[, -1]
+#    rownames(m) <- names
+#    return(m)
+#  }
+#}
     
 # [6 pts]
 # Write a function [longerRange()] with
@@ -376,6 +391,15 @@ hist(test4,xlab="sum of dice roll",main="Histogram for B=5000")
 
 # STOP: did you remember to put in the title and axis label on the histograms?
 
+  #ave.diceRoll <- rep(0, 4)
+#sd.diceRoll <- rep(0,4)
+#Bvec <- c(20, 100, 1000, 5000)
+#for(i in 1:4){
+#  tmp <- dice_sum(k=2, B=Bvec[i])
+#  ave.diceRoll[i] <- mean(tmp)
+#  sd.diceRoll[i] <- sd(tmp)
+#  hist(tmp, xlab="sum of dice roll", main=paste("Histogram for B=", Bvec[i]))
+#}
 #################################################################
 ##### PART VI : string manipulation and regular expressions [20 pts]
 
