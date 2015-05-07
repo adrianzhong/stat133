@@ -12,8 +12,11 @@ grep("\\<(ca|a)?t\\>", cats)
 
 # The following do not work as expected
 # can you figure out why?
-grep("\\<c?a?t)\\>", cats)
-grep("^(cat|at|t)$", cats)
+grep("\\<c?a?t)\\>", cats)    #there is a ")" at the end of t
+grep("^(cat|at|t)$", cats)    #^ and $ mean the start and the end of the string, while \< and \> 
+                              #mean the start and end of a word.Like a string "Hi cat" 
+                              #grep("\\<cat\\>","Hi cat")  ==>    1
+                              #grep("^cat$","Hi cat")   ==>  interger(0)
 
 # Find the word cat or caat or caaat, etc.
 caats = c("cat", "caat.", "caats", "caaaat", "my cat")

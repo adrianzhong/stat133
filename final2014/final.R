@@ -10,9 +10,9 @@
 #################################################################
 # IMPORTANT
 # Enter your personal information here, between the quotation marks:
-name <- ""
-github.name <- ""
-email.address <- ""
+name <- "Zirui Zhong"
+github.name <- "adrianzhong"
+email.address <- "zhongzirui@berkeley.edu"
 
 #################################################################
 # The exam has a total of 100 points and for each task 
@@ -180,7 +180,11 @@ mw <- <your code here>
 
 #################################################################
 ##### PART III : apply and by statements [15 pts]
-
+#aplly-array, matrix
+#lapply-list
+#sapply-list & simplity output
+#tapply-ragged array
+#mapply
 # For the next few tasks you will use the list Cache500 
 # (list of length 500, each element is a numeric vector of various lengths)
 # LEAVE AS IS:
@@ -297,7 +301,8 @@ set.seed(123456)
 # if k=2 then in each roll you pick twice a number between 1 and 6 at random,
 # calculate their sum, do this B times and return
 # and so on.
-
+#replicate is similar to for loop and it is widely used in simulation. The thing is 
+#content of the replicate must be exactly the same. If not, use for loop instead.
 dice_sum <- function(k, B){
 
 }
@@ -351,6 +356,8 @@ phrases <- c("coat", "cat", "ct", "mat", "Sat!", "Now?", "match", "How much? $10
 # a match to "at", anywhere 
 text1 <- <your code here>
 
+#what time to use [] or () or {}
+  
 # [2 pts]
 # Create a vector [text2] that lists the elements in phrases that have 
 # a match to "at", _at the end of the phrase_ 
