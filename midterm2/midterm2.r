@@ -11,7 +11,7 @@ present="yes"
 x=c()
 for (i in 1:2000)
   x[i]=i*6
-
+#x <- 6 * seq(1, 2000)
 # [1 pt]
 # Create [y], a logical vector of length 2000 
 # with y[i]=T if x[i] is divisible by 10, otherwise F
@@ -24,7 +24,8 @@ y=x%%10==0
 # (i.e. just the numbers 1 through 13 each repeated 4 times)
 set.seed(2718)
 #w <- <your code here>
-w=sample(rep(1:13,4),42)
+w=sample(rep(1:13,4),42)   #pay attention, repeat each number 4 times, using rep(1:13,each=4)
+#w <- sample(rep(seq(1, 13), each = 4), 52, replace = F)
 
 # [1 pt]
 # Create [m], a matrix of size 10x10 with entries that are 
@@ -41,6 +42,7 @@ m=matrix(rexp(100,rate=3),ncol=10,nrow=10)
 set.seed(71)
 #l <- <your code here>
 l=list(rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2),rpois(100,0.2))
+#l <- lapply(1:12, function(x) rpois(100, 5))
 
 # for the next two tasks you will use the data frame infants (size 1236x15)
 # LEAVE AS IS:
