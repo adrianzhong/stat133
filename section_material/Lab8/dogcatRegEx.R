@@ -38,3 +38,6 @@ grep("[Dd][Oo][Gg]", dogs)
 nums = c("1.2", "-3000", "5lo", "hi2", "12.", "+57")
 gregexpr("^[-+]?[[:digit:]]+(\\.[[:digit:]]+)?$", nums)
 
+cat=c("cat","at","catatt")
+grep("\\<c?a?t)\\>", cat)
+grep("^(cat|at|t)$", cat)
