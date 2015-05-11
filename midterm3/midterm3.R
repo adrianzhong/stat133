@@ -107,3 +107,13 @@ mostCommonLetter=function(chvec){
   if (num[1]==num[2] & num[2]==num[3] & num[3]==num[4] & num[4]>num[5])
     return (names(num)[1:4]) 
 }
+
+mostCommonLetter=function(chvec){
+  chvec=gsub("[[:punct:]]+","",chvec)
+  chvec=gsub("[0-9]+","",chvec)
+  chvec=unlist(strsplit(chvec,""))
+  letter=unique(chvec)
+  num=table(chvec)
+  num=sort(num,decreasing=T)
+  return(names(num[which(num==max(num))]))
+}

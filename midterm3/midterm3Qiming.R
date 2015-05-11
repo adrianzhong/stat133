@@ -98,3 +98,23 @@ mostCommonLetter = function(chvec){
   letter = str3[which(m2 == m1)]
   return(letter)
 }
+
+mostCommonLetter=function(chvec){
+  chvec=gsub("[[:punct:]]+","",chvec)
+  chvec=gsub("[0-9]+","",chvec)
+  chvec=unlist(strsplit(chvec,""))
+  letter=unique(chvec)
+  num=table(chvec)
+  num=sort(num,decreasing=T)
+  return(names(num[which(num==max(num))]))
+}
+
+mostCommonLetter=function(chvec){
+  chvec=gsub("[[:punct:]]+","",chvec)
+  chvec=gsub("[0-9]+","",chvec)
+  chvec=unlist(strsplit(chvec,""))
+  letter=unique(chvec)
+  num=table(chvec)
+  num=sort(num,decreasing=T)
+  return(num)
+}
