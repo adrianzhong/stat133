@@ -110,6 +110,14 @@ var(boot_mean)
 ?grep
 ?gsub
 ?gregexpr
+> gregexpr("a","asfasfasfasfa")
+[[1]]
+[1]  1  4  7 10 13
+attr(,"match.length")
+[1] 1 1 1 1 1
+attr(,"useBytes")
+[1] TRUE
+
 
 # Other functions:
 ?paste
