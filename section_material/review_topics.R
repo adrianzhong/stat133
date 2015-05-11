@@ -38,7 +38,7 @@ vec[1]
 ?symbols
 ?text
 ?hist
-
+?points
 # Knowledge of plotting parameters:
 ?par
 ?rgb   #alpha for transparency
@@ -58,15 +58,30 @@ while (i < 11){
 }
 
 # apply family
-?apply
+?apply    apply(X, MARGIN, FUN, ...)
 ?replicate   
-?tapply      
-?mapply         
+?tapply   tapply(X, INDEX, FUN = NULL, ..., simplify = TRUE)
+?lapply
+?mapply   mapply(FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE,
+                 USE.NAMES = TRUE)      
+?sapply   sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)
+?order return index from the lowest to highest (as default)
+order(c(3,2,4,1)) ==>   4,2,1,3  # return the nth element from the lowest to hightest
+sort(c(3,2,4,1))==> 1,2,3,4
+
+lapply approximately equals to sapply(as vector as possible)
+tapply(c(1,2,3,4,5,6),INDEX=c(4,5,3,2,6,1),FUN=function(x) x+1)
+x=c(3,4,2,6,1,5)
+tapply(x,INDEX=x,FUN=function(x) x+1)
+mapply(function(a,b,c){curve(c*x^2+b*x+a,add=T,col=rgb(1,0.2,0.8,alpha=0.5))},
+       coeff[,1],coeff[,2],coeff[,3])
+mapply can apply to functions that have more than one variables
+matrix=matrix(1:20,4,5)
+matrix(matrix,1,sum)  #1 is for rows, 2 is for column, c(1,2) is for rows and columns
 
 # Conditioning
 if (){}
 else{}
-
 ### IV. Function definition
 # Syntax
 functionName <- function(arg1, arg2){
@@ -100,7 +115,7 @@ var(boot_mean)
 ?paste
 ?strsplit
 ?table
-
+?substring
 # Wildcards and patterns
 ?regex
 
