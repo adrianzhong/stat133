@@ -69,6 +69,7 @@ n.wr=nrow(wr1500m)
 # wr.name <- your code here
 #wr.name=wr1500m$athlete[wr1500m$times %in% 26]
 wr.name=wr1500m[min(wr1500m$times),"athlete"]
+#wr.name <- wr1500m$athlete[wr1500m$times == min(wr1500m$times)]
 # Let's look at the relationship between date and time.
 # Q1c. What type of variable (numeric (continuous or discrete), nominal ordinal)
 # are year and times? (no need to save the output, just look at it)
@@ -107,6 +108,10 @@ plot(wr1500m$year,wr1500m$times_sec, "s", xlab="year", ylab="record times")
 new_year=wr1500m$year
 new_year[is.na(wr1500m$month)]=new_year[is.na(wr1500m$month)]+0.5
 new_year[is.na(wr1500m$month)==FALSE]=new_year[is.na(wr1500m$month)==FALSE]+wr1500m$month[is.na(wr1500m$month)==FALSE]/12
+#wr1500m$month[is.na(wr1500m$month)] = 6
+#new_year = wr1500m$year + wr1500m$month/12
+#wr1500m = data.frame(wr1500m, new_year)
+
 # wr1500m <- your code here
 wr1500m$new_year=new_year
 

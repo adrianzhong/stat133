@@ -1,3 +1,11 @@
+#know the github login info before exam
+#type get-exam to get the materials from github and final exam
+#minimized the terminal and open the Rstudio
+#push the github when the exam ends
+#bcourses pages final 
+#final is similar to last year, do last year final
+#can create our own cheat sheet
+
 ## Brief list of topics (may not be complete)
 
 ### I. Variable creation, subsetting and indexing
@@ -33,7 +41,7 @@ vec[1]
 
 # Knowledge of plotting parameters:
 ?par
-?rgb
+?rgb   #alpha for transparency
 
 # No ggplot
 # No googleVis
@@ -51,9 +59,9 @@ while (i < 11){
 
 # apply family
 ?apply
-?replicate
-?tapply
-?mapply
+?replicate   
+?tapply      
+?mapply         
 
 # Conditioning
 if (){}
@@ -96,13 +104,32 @@ var(boot_mean)
 # Wildcards and patterns
 ?regex
 
-### VII. Linear Models
+### VII. Linear Models   linear and quadratic 
 # Functions
 ?lm
 ?predict
 
-# Fitted values, coefficients, residuals
+# Fitted values, coefficients, residuals 
 mod <- lm(mpg~., data=mtcars)
-mod$fitted
-mod$coef
+mod$fitted    #predicted Y values
+mod$coef      #estimates for predictor and intersect
 mod$residuals
+
+
+
+#review session
+grep("^d",tmp)  #get words start from d
+grep("^.a",tmp)  #the seconde char is a
+grep("[0-9]",tmp)  #fine number [0-9] is a category, put them in square bracket
+grep("[A-z][0-9]",tmp)  #first is a letter, and then a number
+grep("[[:digit:]]", tmp)  #find digit
+
+
+
+
+#self review
+#final
+#qutient and reminder   11%%5=1   11%/%5=2
+#add points to a plot points()
+#paste(x,collapse=" ") can make more than 1 strings in to one long string
+#plot baby y vs. x
