@@ -262,7 +262,7 @@ text(log10(SO2012Ctry$pop[top5]),log10(SO2012Ctry$GDP_per_person[top5]),labels=t
 # where the countries are filled with a light grey color.
 
 ## you only need to run these two lines once:
-install.packages("maps")
+# install.packages("maps")
 library("maps")
 
 # world <- map( your code here )
@@ -299,7 +299,7 @@ symbols(wonMedal$longitude,wonMedal$latitude,circles=wonMedal$Total,add=TRUE)
 # e.g. myColor = "#FEB24CAA" or   "#FEB24C88"
 
 # You only need to call these two lines once:
-install.packages("RColorBrewer")
+# install.packages("RColorBrewer")
 library("RColorBrewer")
 
 # display.brewer.all( your code here )
