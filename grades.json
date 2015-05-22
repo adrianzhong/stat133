@@ -44,6 +44,19 @@
                     "earned": 7
                 }
             }
+        }, 
+        "midterm4": {
+            "note": "", 
+            "hash": "362e1532ff47c0093a673aee70b5196e4e41c01a", 
+            "earned": 25, 
+            "possible": 27, 
+            "penalty": 0, 
+            "parts": {
+                "midterm4": {
+                    "possible": 30, 
+                    "earned": 25
+                }
+            }
         }
     }, 
     "login": "adrianzhong", 
