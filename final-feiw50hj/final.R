@@ -377,10 +377,15 @@ NumJackpot=function(k, B){
 # Plot a histogram of the output from NumJackpot (i.e. four histograms)
 
 # <your plot here>
-hist(NumJackpot(100,1000))
-hist(NumJackpot(500,1000))
-hist(NumJackpot(1000,1000))
-hist(NumJackpot(5000,1000))
+# inga
+#hist(NumJackpot(100,1000))
+#hist(NumJackpot(500,1000))
+#hist(NumJackpot(1000,1000))
+#hist(NumJackpot(5000,1000))
+hist(NumJackpot(100,100))
+hist(NumJackpot(500,100))
+hist(NumJackpot(1000,100))
+hist(NumJackpot(5000,100))
 #################################################################
 ##### PART VI : string manipulation and regular expressions [20 pts]
 
